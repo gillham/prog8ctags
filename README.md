@@ -6,6 +6,8 @@ The basic purpose of ctags is to index the *definitions* from your source code a
 
 ## Installation
 
+Clone this repository or download it as a zip file and extract to a working directory.
+
 You should be be able to install Universal Ctags with your operating system's package manager on Linux or [Homebrew](https://brew.sh/) on macOS. For Windows you can download a binary directly.
 
 ### Universal Ctags
@@ -18,11 +20,29 @@ You should be be able to install Universal Ctags with your operating system's pa
 
 #### Windows
 
-... Needs further testing with ctags & vim...
-Download from the [ctags-win32 project releases](https://github.com/universal-ctags/ctags-win32/releases) page.
+Download the latest release from the [ctags-win32 project releases](https://github.com/universal-ctags/ctags-win32/releases/tag/v6.1.0) page. Currently that is v6.1.0.
 
-### Prog8 ctags configuration files
+Unzip the downloaded file or just extract `ctags.exe` and `readtag.exe` from it.  Put the files somewhere in your path.  I like to make a directory `%USERPROFILE%\bin` and put it in the path.  You should be able to launch a command prompt and run `ctags --version` if you have successfully added it to your path. Also test `readtags --version` as it is used by some plugins.
 
+If you want to use ctags with Visual Studio Code you can install the Ctags Companion extension.
+
+### Prog8 Universal Ctags configuration files
+
+#### Windows
+
+Installing on Windows is very similar to Linux & macOS below, but the paths are slightly different.
+On Windows you also use a `ctags.d` directory (notice the lack of leading `.` dot here)
+
+To create the configuration directory, copy the files, and verify them use the commands below:
+```
+C:\...\prog8ctags> mkdir %USERPROFILE%\ctags.d
+C:\...\prog8ctags> copy dot.ctags.d\* %USERPROFILE%\ctags.d\
+C:\...\prog8ctags> dir %USERPROFILE%\ctags.d\
+```
+
+Read the Linux & macOS section below an adapt as appropriate for Windows.
+
+#### Linux & macOS
 Universal Ctags looks for configuration files in a `.ctags.d` directory in your home directory. You can create this on Linux & macOS with:
 ```
 $ mkdir $HOME/.ctags.d/
@@ -195,6 +215,30 @@ The same function can be found from within my source code by pressing Ctrl+] wit
 ```
 
 Additionally if the cursor is on `txt` you can jump to the definition of the `txt` block in `c64/textio.p8` from the standard library.
+
+# Usage with specific editors
+
+## Visual Studio Code
+
+Install the Ctags Companion extension and open your Prog8 working directory in Visual Studio Code.
+
+![VSC Ctags](images/vsc-ctags-extension.png "Visual Studio Code Ctags Extension")
+
+Once installed you can run `Ctags Companion: Rebuild Ctags` from the command palette or just `ctags` from terminal or cli.
+
+Once your project directory has a `tags` file you can lookup a symbol by positioning the cursor on it and pressing F12.
+
+![VSC Ctags Lookup](images/vsc-ctags-lookup.png "Visual Studio Code Ctags Lookup")
+
+You can look at different matching tags in the browser on the right and scroll around in the original source on the left.
+
+Also you can do a symbol lookup with Ctrl-T (on Windows/Linux) and it will do a partial match and give you a list of symbols.
+
+Here I pretty Ctrl-T while on `print` and get the list shown.
+
+![VSC Ctags Symbol](images/vsc-ctags-symbol.png "Visual Studio Code Ctags Symbol")
+
+
 
 # See Also
 
