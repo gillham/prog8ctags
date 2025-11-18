@@ -1,0 +1,42 @@
+#
+# Minimal prog8.ctags
+# 
+
+# define language and extension
+--langdef=Prog8
+--map-Prog8=+.p8
+
+# define kinds of things Prog8 has
+--kinddef-Prog8=a,asmsub,assembly subroutines
+--kinddef-Prog8=b,block,block
+--kinddef-Prog8=c,const,constants
+--kinddef-Prog8=e,extsub,external subroutines
+--kinddef-Prog8=s,sub,subroutines
+--kinddef-Prog8=t,struct,structures
+--kinddef-Prog8=v,variables,variables
+
+# Captures myblock: myblock $c000 {
+--regex-Prog8=/^[\t ]*([[:alpha:]][0-9_[:alpha:]]+)([\t ]*[\$%]?[[:xdigit:]]+)?[\t ]*\{/\1/b/
+
+# Captures foo: sub foo()
+--regex-Prog8=/^[\t ]*sub[\t ]+([[:alpha:]][0-9_[:alpha:]]+)[\t ]*\(/\1/s/
+
+# Captures bar: [inline] asmsub bar()
+--regex-Prog8=/^[\t ]*(inline[ \t]+)?asmsub[\t ]+([[:alpha:]][_[:alnum:]]+)[\t ]*\(/\2/a/
+
+# Captures rom1: extsub $2000 = rom1()
+--regex-Prog8=/^[\t ]*extsub[\t ]+\$[[:xdigit:]]+[\t ]*\=[\t ]*([[:alpha:]][_[:alnum:]]+)[\t ]*\(/\1/e/
+
+# Captures foobar: const ubyte foobar = $00
+--regex-Prog8=/^[\t ]*const[\t ]+[[:alpha:]]+[\t ]+([[:alpha:]][_[:alnum:]]+)[\t ]*=/\1/c/
+
+# Captures foobar: ubyte foobar / byte[] foobar
+# Captures foobar: uword @nozp foobar = $0000 / ubyte[] @shared foobar = $00
+--regex-Prog8=/^[\t ]*(bool|[u]?word|[u]?byte|float|long|str)(\[.*\])?[\t ]+(@\w+[ \t]+)?([[:alpha:]][1-9_[:alpha:]]+)[\t ]*=?/\4/v/
+
+# Captures Item: struct Item {
+--regex-Prog8=/^[\t ]*struct[\t ]+([[:alpha:]][0-9_[:alpha:]]+)[\t ]*\{/\1/t/
+
+#
+# end-of-file
+#
