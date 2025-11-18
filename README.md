@@ -234,7 +234,7 @@ You can look at different matching tags in the browser on the right and scroll a
 
 Also you can do a symbol lookup with Ctrl-T (on Windows/Linux) and it will do a partial match and give you a list of symbols.
 
-Here I pretty Ctrl-T while on `print` and get the list shown.
+Here I press Ctrl-T while on `print` and get the list shown.
 
 ![VSC Ctags Symbol](images/vsc-ctags-symbol.png "Visual Studio Code Ctags Symbol")
 
